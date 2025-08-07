@@ -83,3 +83,7 @@ body {
 .o-turn {
   color: var(--color-o);
 }
+
+.won {
+  background-color: rgb(18, 17, 17);
+}
