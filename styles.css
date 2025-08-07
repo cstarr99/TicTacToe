@@ -1,3 +1,8 @@
+:root {
+  --color-x: rgb(234, 55, 55);
+  --color-o: rgb(14, 113, 34);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -5,7 +10,7 @@
 body {
   margin: 0;
   background-image: linear-gradient(to right, purple, gray);
-  font-family: chewy;
+  font-family: Google Sans Code;
 }
 
 .container {
@@ -48,4 +53,33 @@ body {
 
 .reset-game-btn:hover {
   filter: brightness(75%);
+}
+
+.X {
+  font-size: 6rem;
+  color: var(--color-x);
+  margin: 0;
+  margin-top: 10px;
+  text-transform: capitalize;
+}
+
+.O {
+  font-size: 6.3rem;
+  color: var(--color-o);
+  margin: 0;
+  margin-top: 10px;
+  text-transform: capitalize;
+}
+
+.person-turn {
+  text-align: center;
+  font-size: 1.75rem;
+}
+
+.x-turn {
+  color: var(--color-x);
+}
+
+.o-turn {
+  color: var(--color-o);
 }
