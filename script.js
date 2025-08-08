@@ -35,6 +35,7 @@ resetBtn.addEventListener("click", (e) => {
   resetItems();
 });
 
+//creates tile.
 function createItem(currentItem, letter) {
   const newLetter = document.createElement("h2");
   newLetter.innerText = letter;
@@ -42,6 +43,7 @@ function createItem(currentItem, letter) {
   currentItem.appendChild(newLetter);
 }
 
+//resets game back to beginning.
 function resetItems() {
   tileItems.forEach((tile) => {
     tile.innerHTML = "";
@@ -54,6 +56,7 @@ function resetItems() {
   gameOver = false;
 }
 
+//shows who's turn it is.
 function setTurn(letter) {
   if (letter === "X" || letter === "x") {
     personsTurn.children[1].innerText = "O";
@@ -67,6 +70,7 @@ function setTurn(letter) {
   }
 }
 
+//checks to see if either team won, and is so displays the win.
 function checkWin() {
   //collect the indexes from both x and o's.
   const xIndices = [];
@@ -96,6 +100,7 @@ function checkWin() {
   }
 }
 
+//check is a team won and returns "won" if they have.
 function showWinner(letterArray) {
   const winningSet = winningConditions.find((set) =>
     set.every((number) => letterArray.includes(number))
@@ -108,6 +113,7 @@ function showWinner(letterArray) {
   }
 }
 
+//changes above text to winning text.
 function addWinningText(letter) {
   personsTurn.innerHTML = "";
 
@@ -125,5 +131,3 @@ function addWinningText(letter) {
   personsTurn.appendChild(span);
   personsTurn.appendChild(afterSpan);
 }
-
-//watch video
