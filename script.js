@@ -4,6 +4,8 @@ const personsTurn = document.querySelector(".person-turn");
 const tileItems = Array.from(document.querySelectorAll(".tile"));
 const modal = document.querySelector(".modal");
 const modalTitle = document.querySelector(".modal-title");
+const gameForm = document.querySelector("#game-form");
+let gameOver = false;
 const winningConditions = [
   [0, 1, 2],
   [3, 4, 5],
@@ -17,10 +19,9 @@ const winningConditions = [
 
 document.addEventListener("click", (e) => {
   e.preventDefault();
-  console.clear();
   if (!e.target.matches(".tile")) return;
   const currentItem = e.target;
-  const letter = personsTurn.children[0].innerText;
+  const letter = personsTurn.children[1].innerText;
   createItem(currentItem, letter);
   setTurn(letter);
   checkWin();
@@ -43,21 +44,23 @@ function resetItems() {
     tile.innerHTML = "";
     tile.classList.remove("won");
   });
-  personsTurn.children[0].innerText = "X";
-  personsTurn.children[0].classList.add("x-turn");
-  personsTurn.children[0].classList.remove("o-turn");
+  personsTurn.children[1].innerText = "X";
+  personsTurn.children[1].classList.add("X-turn");
+  personsTurn.children[1].classList.remove("O-turn");
+  personsTurn.children[2].innerText = "'s Turn";
+  gameOver = false;
 }
 
 function setTurn(letter) {
   if (letter === "X" || letter === "x") {
-    personsTurn.children[0].innerText = "O";
-    personsTurn.children[0].classList.add("o-turn");
-    personsTurn.children[0].classList.remove("x-turn");
+    personsTurn.children[1].innerText = "O";
+    personsTurn.children[1].classList.add("O-turn");
+    personsTurn.children[1].classList.remove("X-turn");
   }
   if (letter === "O" || letter === "o") {
-    personsTurn.children[0].innerText = "X";
-    personsTurn.children[0].classList.add("x-turn");
-    personsTurn.children[0].classList.remove("o-turn");
+    personsTurn.children[1].innerText = "X";
+    personsTurn.children[1].classList.add("X-turn");
+    personsTurn.children[1].classList.remove("O-turn");
   }
 }
 
@@ -72,7 +75,7 @@ function checkWin() {
     }
   });
   if (showWinner(xIndices) == "won") {
-    personsTurn.innerText = `Player X Won!`;
+    addWinningText("X");
   }
 
   const oIndices = [];
@@ -84,7 +87,7 @@ function checkWin() {
     }
   });
   if (showWinner(oIndices) == "won") {
-    personsTurn.innerText = "Player O Won!";
+    addWinningText("O");
   }
 }
 
@@ -100,6 +103,25 @@ function showWinner(letterArray) {
   }
 }
 
-//fix winning screen
-//after game won it wont reset
+function addWinningText(letter) {
+  personsTurn.innerHTML = "";
+
+  const beforeSpan = document.createElement("span");
+  const span = document.createElement("span");
+  const afterSpan = document.createElement("span");
+
+  beforeSpan.innerText = "Player ";
+  span.innerText = letter;
+  afterSpan.innerText = " Wins!";
+
+  span.classList.add(letter + "-turn");
+
+  personsTurn.appendChild(beforeSpan);
+  personsTurn.appendChild(span);
+  personsTurn.appendChild(afterSpan);
+}
+
 //click same card twice
+//stop game after win
+//if game ends and nobody wins
+//watch video

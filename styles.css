@@ -76,11 +76,11 @@ body {
   font-size: 1.75rem;
 }
 
-.x-turn {
+.X-turn {
   color: var(--color-x);
 }
 
-.o-turn {
+.O-turn {
   color: var(--color-o);
 }
 
