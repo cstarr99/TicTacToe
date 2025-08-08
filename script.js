@@ -19,9 +19,12 @@ const winningConditions = [
 
 document.addEventListener("click", (e) => {
   e.preventDefault();
+  console.clear();
   if (!e.target.matches(".tile")) return;
+  if (gameOver) return;
   const currentItem = e.target;
   const letter = personsTurn.children[1].innerText;
+  if (currentItem.children.length != 0) return;
   createItem(currentItem, letter);
   setTurn(letter);
   checkWin();
@@ -76,6 +79,7 @@ function checkWin() {
   });
   if (showWinner(xIndices) == "won") {
     addWinningText("X");
+    gameOver = true;
   }
 
   const oIndices = [];
@@ -88,6 +92,7 @@ function checkWin() {
   });
   if (showWinner(oIndices) == "won") {
     addWinningText("O");
+    gameOver = true;
   }
 }
 
@@ -121,7 +126,4 @@ function addWinningText(letter) {
   personsTurn.appendChild(afterSpan);
 }
 
-//click same card twice
-//stop game after win
-//if game ends and nobody wins
 //watch video
