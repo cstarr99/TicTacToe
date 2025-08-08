@@ -1,4 +1,4 @@
-# TicTacToe
+# Tic-Tac-Toe
 
 ### I wanted to make a game to practice JavaScript, so I thought building a Tic-Tac-Toe game from scratch would be a good challenge.
 
